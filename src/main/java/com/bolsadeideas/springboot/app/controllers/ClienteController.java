@@ -1,10 +1,7 @@
 package com.bolsadeideas.springboot.app.controllers;
 
-import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.Map;
 
 import com.bolsadeideas.springboot.app.models.service.IUploadFileService;
@@ -50,6 +47,7 @@ public class ClienteController {
 		} catch (MalformedURLException e){
 			e.printStackTrace();
 		}
+		assert recurso != null;
 		return ResponseEntity.ok().header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename\"" + recurso.getFilename() + "\"").body(recurso);
 	}
 
