@@ -44,7 +44,6 @@ public class ClienteServiceImpl implements IClienteService {
 		clienteDao.deleteById(id);
 		
 	}
-
 	@Override
 	public Page<Cliente> findAll(Pageable pageable) {
 		// TODO Auto-generated method stub

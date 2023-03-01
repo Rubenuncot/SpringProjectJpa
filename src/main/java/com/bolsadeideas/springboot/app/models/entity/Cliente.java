@@ -1,20 +1,14 @@
 package com.bolsadeideas.springboot.app.models.entity;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 
-
+import jakarta.persistence.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-import jakarta.persistence.Temporal;
-import jakarta.persistence.TemporalType;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
@@ -36,15 +30,19 @@ public class Cliente implements Serializable {
 	@NotEmpty
 	@Email
 	private String email;
-
+	@Column
+	@OneToMany(mappedBy = "clientes", fetch = FetchType.LAZY,  cascade = CascadeType.ALL)
+	private List<Factura> facturas;
 	@NotNull
 	@Column(name = "create_at")
 	@Temporal(TemporalType.DATE)
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date createAt;
-	
-	
 	private String foto;
+
+	public Cliente() {
+		facturas = new ArrayList<>();
+	}
 
 	public String getFoto() {
 		return foto;
@@ -92,6 +90,18 @@ public class Cliente implements Serializable {
 
 	public void setCreateAt(Date createAt) {
 		this.createAt = createAt;
+	}
+
+	public List<Factura> getFacturas() {
+		return facturas;
+	}
+
+	public void setFacturas(List<Factura> facturas) {
+		this.facturas = facturas;
+	}
+
+	public void addFacturas(Factura factura){
+		this.facturas.add(factura);
 	}
 
 	public static long getSerialversionuid() {
