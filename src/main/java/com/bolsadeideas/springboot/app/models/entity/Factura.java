@@ -19,7 +19,7 @@ public class Factura implements Serializable {
     @Temporal(TemporalType.DATE)
     @Column(name = "fecha")
     private Date createAt;
-    @Column(name = "cliente")
+
     @ManyToOne(fetch = FetchType.LAZY)
     private Cliente cliente;
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)

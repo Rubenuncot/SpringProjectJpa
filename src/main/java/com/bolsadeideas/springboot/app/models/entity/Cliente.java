@@ -14,9 +14,8 @@ import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 
 @Entity
-@Table(name = "clientes")
+@Table(name = "cliente")
 public class Cliente implements Serializable {
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -30,8 +29,8 @@ public class Cliente implements Serializable {
 	@NotEmpty
 	@Email
 	private String email;
-	@Column
-	@OneToMany(mappedBy = "clientes", fetch = FetchType.LAZY,  cascade = CascadeType.ALL)
+
+	@OneToMany(mappedBy = "cliente", fetch = FetchType.LAZY,  cascade = CascadeType.ALL)
 	private List<Factura> facturas;
 	@NotNull
 	@Column(name = "create_at")
