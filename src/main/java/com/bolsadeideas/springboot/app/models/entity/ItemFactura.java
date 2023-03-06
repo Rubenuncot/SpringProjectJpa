@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 import java.io.Serializable;
 
 @Entity
-@Table(name = "facturas_item")
+@Table(name = "facturas_items")
 public class ItemFactura implements Serializable {
     private static final long serialVersionUID = 1L;
 

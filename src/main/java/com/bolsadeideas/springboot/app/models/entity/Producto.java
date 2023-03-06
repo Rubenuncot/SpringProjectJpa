@@ -6,16 +6,15 @@ import java.io.Serializable;
 import java.util.Date;
 
 @Entity
-@Table(name = "producto")
+@Table(name = "productos")
 public class Producto implements Serializable {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nombre;
     private Double precio;
     @Temporal(TemporalType.DATE)
-    @Column(name = "created_at")
+    @Column(name = "create_at")
     private Date createdAT;
 
     @PrePersist

@@ -1,6 +1,8 @@
 package com.bolsadeideas.springboot.app.models.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -14,17 +16,18 @@ public class Factura implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    private String description;
+    private String descripcion;
     private String observacion;
-    @Temporal(TemporalType.DATE)
-    @Column(name = "fecha")
-    private Date createAt;
-
     @ManyToOne(fetch = FetchType.LAZY)
     private Cliente cliente;
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "factura_id")
     private List<ItemFactura> items;
+    @NotNull
+    @Column(name = "create_at")
+    @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern="yyyy-MM-dd")
+    private Date createAt;
 
     public Factura() {
         items = new ArrayList<>();
@@ -43,12 +46,12 @@ public class Factura implements Serializable {
         this.id = id;
     }
 
-    public String getDescription() {
-        return description;
+    public String getDescripcion() {
+        return descripcion;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setDescripcion(String description) {
+        this.descripcion = description;
     }
 
     public String getObservacion() {
